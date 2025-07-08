@@ -1,0 +1,40 @@
+Package: mlspatial
+Title: Machine Learning and Mapping for Spatial Epidemiology
+Version: 0.1.0
+Authors@R: 
+    person("Adeboye", "Azeez", , "azizadeboye@gmail.com", role = c("aut", "cre"))
+Description: Loads spatial and attribute data, builds ML models, evaluates and maps them.
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Depends: 
+    R (>= 4.1),
+    tidyverse
+Imports:
+    sf,
+    sp,
+    readxl,
+    dplyr,
+    ggplot2,
+    randomForest,
+    xgboost,
+    e1071,
+    caret,
+    tmap,
+    skimr,
+    gstat,
+    spdep,
+    ggpubr,
+    fastmap,
+    tmaptools,
+    rgeoda,
+    terra,
+    classInt
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Config/testthat/edition: 3
