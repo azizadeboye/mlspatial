@@ -1,0 +1,115 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# mlspatial
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of mlspatial is to ...
+
+## Installation
+
+You can install the development version of mlspatial from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("mlspatial")
+mlspatial::mlspatial("azizadeboye/mlspatial")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(mlspatial)
+## basic example code
+```
+
+What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(mlspatial)
+library(dplyr)
+library(ggplot2)
+library(tmap)
+library(tidyverse)
+library(sp)
+library(sf)
+library(fastmap)
+library(skimr)
+library(tmaptools)
+library(spdep)
+library(rgeoda)
+library(terra)
+library(classInt)
+library(gstat)
+library(randomForest)
+library(xgboost) 
+library(e1071) 
+library(nnet) 
+library(caret)
+
+```
+
+
+```{r mlspatial, echo = FALSE}
+plot(africa_shp)
+qtm(africa_shp)
+qtm(africa_shp, text = "NAME")  # Replace with actual field name
+
+tm_shape(africa_shp) +
+  tm_polygons() +
+  tm_text("NAME", size = 0.5) +  # Replace with correct column
+  tm_title ("Africa Countries")
+
+ggplot(africa_shp) +
+  geom_sf(fill = "lightgray", color = "black") +
+  geom_sf_text(aes(label = NAME), size = 2) +  # Replace as needed
+  ggtitle("Africa countries") +
+  theme_minimal()
+```
+
+```{r}
+# Join data
+mapdata <- join_data(africa_shp, panc_incidence, by = "NAME")
+
+
+## OR Joining/ merging my data and shapefiles
+mapdata <- inner_join(africa_shp, panc_incidence, by = "NAME")   
+## OR mapdata <- left_join(nat, codata, by = "DISTRICT_N")
+str(mapdata)
+```
+
+```{r}
+#Visualize Pancreatic cancer Incidence by countries
+#Basic map with labels
+# quantile map
+p1 <- tm_shape(mapdata) + 
+  tm_fill("incidence", fill.scale =tm_scale_intervals(values = "brewer.reds", style = "quantile"), 
+          fill.legend = tm_legend(title = "Incidence")) + tm_borders(fill_alpha = .3) + tm_compass() + 
+  tm_layout(legend.text.size = 0.5, legend.position = c("left", "bottom"), frame = TRUE, component.autoscale = FALSE)
+p2 <- tm_shape(mapdata) + 
+  tm_fill("female", fill.scale =tm_scale_intervals(values = "brewer.reds", style = "quantile"), 
+          fill.legend = tm_legend(title = "Female")) + tm_borders(fill_alpha = .3) + tm_compass() + 
+  tm_layout(legend.text.size = 0.5, legend.position = c("left", "bottom"), frame = TRUE, component.autoscale = FALSE)
+
+current.mode <- tmap_mode("plot")
+tmap_arrange(p1, p2, widths = c(.75, .75))
+tmap_mode(current.mode)
+
+```
+
