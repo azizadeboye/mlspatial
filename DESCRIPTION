@@ -33,7 +33,10 @@ Imports:
     tmaptools,
     rgeoda,
     terra,
-    classInt
+    classInt,
+    kernlab,
+    nnet,
+    writexl
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
