@@ -28,7 +28,7 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
   model.matrix(formula, data = data)[,-1] -> x
   label <- eval(formula[[2]], data)
   dtrain <- xgb.DMatrix(x, label = label)
-  xgb::xgboost(data = dtrain, objective = "reg:squarederror",
+  xgboost::xgboost(data = dtrain, objective = "reg:squarederror",
                nrounds = nrounds, max_depth = max_depth, eta = eta, verbose = 0)
 }
 
