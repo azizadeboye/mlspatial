@@ -2,10 +2,21 @@
 % Please edit documentation in R/model_evaluation.R
 \name{eval_model}
 \alias{eval_model}
-\title{Get RMSE/MAE/R² metrics on training data}
+\title{Get RMSE/MAE/R² metrics on training data
+#' Evaluate Model Performance}
 \usage{
 eval_model(model, data, formula, model_type = c("rf", "xgb", "svr"))
 }
+\arguments{
+\item{model}{A trained model}
+
+\item{data}{A data frame}
+
+\item{formula}{A formula object}
+
+\item{model_type}{Character: "rf", or "xgb", "svr"}
+}
 \description{
 Get RMSE/MAE/R² metrics on training data
+#' Evaluate Model Performance
 }
