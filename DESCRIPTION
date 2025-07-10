@@ -9,14 +9,13 @@ RoxygenNote: 7.3.2
 Suggests: 
     knitr,
     rmarkdown,
+    tidyr,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Depends: 
-    R (>= 4.1),
-    tidyverse
+    R (>= 4.1)
 Imports:
     sf,
-    sp,
     readxl,
     dplyr,
     ggplot2,
@@ -25,17 +24,11 @@ Imports:
     e1071,
     caret,
     tmap,
-    skimr,
-    gstat,
     spdep,
     ggpubr,
-    fastmap,
-    tmaptools,
-    rgeoda,
-    terra,
-    classInt,
+    stats,
+    methods,
     kernlab,
-    nnet,
     writexl
 License: MIT + file LICENSE
 Encoding: UTF-8
