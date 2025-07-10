@@ -6,6 +6,13 @@
 \usage{
 plot_obs_vs_pred(observed, predicted, title = "")
 }
+\arguments{
+\item{observed}{A numeric vector of observed values}
+
+\item{predicted}{A numeric vector of predicted values}
+
+\item{title}{A string for the plot title}
+}
 \description{
 Plot observed vs predicted
 }
