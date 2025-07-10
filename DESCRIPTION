@@ -27,9 +27,7 @@ Imports:
     spdep,
     ggpubr,
     stats,
-    methods,
-    kernlab,
-    writexl
+    methods
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
