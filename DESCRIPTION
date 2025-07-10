@@ -10,6 +10,8 @@ Suggests:
     knitr,
     rmarkdown,
     tidyr,
+    kernlab,
+    writexl
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Depends: 

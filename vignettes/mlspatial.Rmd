@@ -27,6 +27,11 @@ library(tidyr)
 ```
 
 ```{r}
+kernlab::ksvm(...)
+writexl::write_xlsx(...)
+```
+
+```{r}
 # Quick thematic map with country labels
 plot(africa_shp)
 qtm(africa_shp)
