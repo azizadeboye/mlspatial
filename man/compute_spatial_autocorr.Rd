@@ -2,10 +2,19 @@
 % Please edit documentation in R/spatial_autocorrelation.R
 \name{compute_spatial_autocorr}
 \alias{compute_spatial_autocorr}
-\title{Compute Moran's I & LISA, classify clusters}
+\title{Compute Moran's I & LISA, classify clusters
+Compute spatial autocorrelation}
 \usage{
 compute_spatial_autocorr(sf_data, values, signif = 0.05)
 }
+\arguments{
+\item{sf_data}{An \code{sf} object containing spatial features.}
+
+\item{values}{A numeric vector or column name with the variable to test.}
+
+\item{signif}{Logical. If TRUE, show statistically significant areas.}
+}
 \description{
 Compute Moran's I & LISA, classify clusters
+Compute spatial autocorrelation
 }
