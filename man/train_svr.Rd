@@ -2,10 +2,17 @@
 % Please edit documentation in R/train_MLmodels.R
 \name{train_svr}
 \alias{train_svr}
-\title{Train SVR}
+\title{Train SVR
+Train a Support Vector Regression model}
 \usage{
 train_svr(data, formula)
 }
+\arguments{
+\item{data}{A data frame containing the training data.}
+
+\item{formula}{A formula specifying the model.}
+}
 \description{
 Train SVR
+Train a Support Vector Regression model
 }
