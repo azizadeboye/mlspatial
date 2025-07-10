@@ -4,6 +4,8 @@
 #' @param title legend title
 #' @param palette Color palette for map
 #' @return tmap object
+#' @importFrom tmap tm_shape tm_fill tm_scale_intervals tm_legend tm_borders tm_compass tm_layout
+
 #' @export
 plot_single_map <- function(sf_data, var, title, palette = "reds") {
   tm_shape(sf_data) +
