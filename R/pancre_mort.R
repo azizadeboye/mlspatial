@@ -15,7 +15,7 @@
 #'   \item{fagec}{Numeric. Female patients age above 55 years.}
 #'   \item{fagea}{Numeric. Female patients age below 20 years.}
 #'   \item{mageb}{Numeric. Male patients age between 20-54 years.}
-#'   \item{mageb}{Numeric. Male patients age above 55 years.}
+#'   \item{magec}{Numeric. Male patients age above 55 years.}
 #'   \item{magea}{Numeric. Male patients age below 20 years.}
 #'   \item{yra}{Numeric. Incidence rate in year 2017.}
 #'   \item{yrb}{Numeric. Incidence rate in year 2018.}
