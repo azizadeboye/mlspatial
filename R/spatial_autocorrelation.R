@@ -1,4 +1,10 @@
 #' Compute Moran's I & LISA, classify clusters
+#' Compute spatial autocorrelation
+#'
+#' @param sf_data An `sf` object containing spatial features.
+#' @param values A numeric vector or column name with the variable to test.
+#' @param signif Logical. If TRUE, show statistically significant areas.
+
 #' @export
 compute_spatial_autocorr <- function(sf_data, values, signif = 0.05) {
   nb <- spdep::poly2nb(sf_data) %>% spdep::nb2listw(style = "W", zero.policy = TRUE)
