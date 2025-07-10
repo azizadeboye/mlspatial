@@ -2,10 +2,21 @@
 % Please edit documentation in R/train_MLmodels.R
 \name{train_rf}
 \alias{train_rf}
-\title{Train Random Forest}
+\title{Train Random Forest
+Train a Random Forest model}
 \usage{
 train_rf(data, formula, ntree = 500, seed = 123)
 }
+\arguments{
+\item{data}{A data frame containing the training data.}
+
+\item{formula}{A formula describing the model structure.}
+
+\item{ntree}{Number of trees to grow.}
+
+\item{seed}{Random seed for reproducibility.}
+}
 \description{
 Train Random Forest
+Train a Random Forest model
 }
