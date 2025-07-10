@@ -48,13 +48,8 @@ library(mlspatial)
 library(dplyr)
 library(ggplot2)
 library(tmap)
-library(tidyverse)
-library(sp)
 library(sf)
 #> Linking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2() is TRUE
-library(fastmap)
-library(skimr)
-library(tmaptools)
 library(spdep)
 #> Loading required package: spData
 #> To access larger datasets in this package, install the spDataLarge
@@ -67,14 +62,6 @@ library(rgeoda)
 #> The following object is masked from 'package:spdep':
 #> 
 #>     skater
-library(terra)
-#> terra 1.8.54
-#> 
-#> Attaching package: 'terra'
-#> The following object is masked from 'package:tidyr':
-#> 
-#>     extract
-library(classInt)
 library(gstat)
 library(randomForest)
 #> randomForest 4.7-1.2
@@ -94,12 +81,6 @@ library(xgboost)
 #> 
 #>     slice
 library(e1071) 
-#> 
-#> Attaching package: 'e1071'
-#> The following object is masked from 'package:terra':
-#> 
-#>     interpolate
-library(nnet) 
 library(caret)
 #> Loading required package: lattice
 #> 
@@ -108,11 +89,6 @@ library(caret)
 #> 
 #>     lift
 ```
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
 
 <img src="man/figures/README-mlspatial-1.png" width="100%" /><img src="man/figures/README-mlspatial-2.png" width="100%" /><img src="man/figures/README-mlspatial-3.png" width="100%" /><img src="man/figures/README-mlspatial-4.png" width="100%" /><img src="man/figures/README-mlspatial-5.png" width="100%" />
 
@@ -177,7 +153,8 @@ current.mode <- tmap_mode("plot")
 tmap_arrange(p1, p2, widths = c(.75, .75))
 ```
 
+<img src="man/figures/README-unnamed-chunk-4-1.png" width="100%" />
+
 ``` r
 tmap_mode(current.mode)
 ```
-
