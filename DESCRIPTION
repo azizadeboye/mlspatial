@@ -11,7 +11,7 @@ Suggests:
     rmarkdown,
     tidyr,
     kernlab,
-    writexl
+    writexl,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Depends: 
