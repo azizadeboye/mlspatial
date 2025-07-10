@@ -17,22 +17,13 @@ library(mlspatial)
 library(dplyr)
 library(ggplot2)
 library(tmap)
-library(tidyverse)
-library(sp)
 library(sf)
-library(fastmap)
-library(skimr)
-library(tmaptools)
 library(spdep)
-library(rgeoda)
-library(terra)
-library(classInt)
-library(gstat)
 library(randomForest)
 library(xgboost) 
 library(e1071) 
-library(nnet) 
 library(caret)
+library(tidyr)
 ```
 
 ```{r}
@@ -240,7 +231,7 @@ model_preds$ID <- 1:nrow(model_preds)
 
 # Reshape for plotting
 model_long <- model_preds %>%
-  pivot_longer(cols = c("rf_preds", "xgb_preds", "svr_preds"), names_to = "Model", values_to = "Predicted")
+  tidyr::pivot_longer(cols = c("rf_preds", "xgb_preds", "svr_preds"), names_to = "Model", values_to = "Predicted")
 
 # Plot
 ggplot(model_long, aes(x = ID, y = Predicted, color = Model)) +
