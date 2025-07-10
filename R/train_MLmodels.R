@@ -20,7 +20,6 @@ train_rf <- function(data, formula, ntree = 500, seed = 123) {
 #' @param nrounds Number of boosting iterations.
 #' @param max_depth Maximum tree depth.
 #' @param eta Learning rate.
-#' @importFrom methods setClass
 #' @importFrom xgboost xgb.DMatrix
 #' @importFrom xgboost xgboost
 
