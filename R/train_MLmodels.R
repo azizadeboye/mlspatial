@@ -80,7 +80,9 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
 #' @importFrom e1071 svm
 #' @examples
 #' \dontrun{
-#' svr_model <- train_svr(mapdata, incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
+#' svr_model <- train_svr(
+#'     mapdata,
+#'     incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
 #'               magea + mageb + magec + yrb + yrc + yrd + yre)
 #' summary(svr_model)
 #' }
