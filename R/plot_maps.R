@@ -13,8 +13,10 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' # Plot a single map of "incidence"
 #' plot_single_map(mapdata, "incidence", "Incidence")
+#' }
 plot_single_map <- function(sf_data, var, title, palette = "reds") {
   tm_shape(sf_data) +
     tm_fill(var, fill.scale = tm_scale_intervals(
