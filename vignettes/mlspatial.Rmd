@@ -242,7 +242,8 @@ ggplot(model_long, aes(x = ID, y = Predicted, color = Model)) +
   theme_minimal()
 
 ## plot actual vs predicted 
-par(mfrow = c(1, 3))  # 3 plots side-by-side
+oldpar <- par(mfrow = c(1, 3)) # 3 plots side-by-side
+on.exit(par(oldpar))
 
 # Random Forest
 plot(mapdata$incidence, mapdata$rf_pred,
@@ -262,7 +263,8 @@ plot(mapdata$incidence, mapdata$svr_pred,
      main = "SVR", pch = 19, col = "purple")
 abline(0, 1, col = "red", lwd = 2)
 
-par(mfrow = c(1, 1))  # Reset layout
+oldpar <- par(mfrow = c(1, 1)) 
+on.exit(par(oldpar))
 
 ## Actual vs predicted plot with correlations
 
