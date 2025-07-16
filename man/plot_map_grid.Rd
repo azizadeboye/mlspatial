@@ -18,11 +18,11 @@ A tmap object representing arranged maps.
 Arrange a list of tmap objects into a grid layout.
 }
 \examples{
-# Create individual maps
+\dontrun{
+# Assume 'mapdata' is an sf object with spatial data and variables
 p1 <- plot_single_map(mapdata, "incidence", "Incidence")
 p2 <- plot_single_map(mapdata, "female", "Female")
 p3 <- plot_single_map(mapdata, "male", "Male")
-
-# Arrange maps in a grid
 plot_map_grid(list(p1, p2, p3), ncol = 3)
+}
 }

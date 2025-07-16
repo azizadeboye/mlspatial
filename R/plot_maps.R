@@ -42,13 +42,14 @@ plot_single_map <- function(sf_data, var, title, palette = "reds") {
 #' @export
 #'
 #' @examples
-#' # Create individual maps
+#' \dontrun{
+#' # Assume 'mapdata' is an sf object with spatial data and variables
 #' p1 <- plot_single_map(mapdata, "incidence", "Incidence")
 #' p2 <- plot_single_map(mapdata, "female", "Female")
 #' p3 <- plot_single_map(mapdata, "male", "Male")
-#'
-#' # Arrange maps in a grid
 #' plot_map_grid(list(p1, p2, p3), ncol = 3)
+#' }
+
 plot_map_grid <- function(maps, ncol = 2) {
   old_mode <- tmap::tmap_mode("plot")
   res <- do.call(tmap::tmap_arrange, c(maps, list(ncol = ncol)))

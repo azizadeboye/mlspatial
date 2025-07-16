@@ -29,9 +29,9 @@ train_rf <- function(data, formula, ntree = 500, seed = 123) {
 #'
 #' @param data A data frame with the training data.
 #' @param formula A formula defining the model structure.
-#' @param nrounds Number of boosting iterations (default 100).
-#' @param max_depth Maximum tree depth (default 4).
-#' @param eta Learning rate (default 0.1).
+#' @param nrounds Number of boosting iterations.
+#' @param max_depth Maximum tree depth.
+#' @param eta Learning rate.
 #'
 #' @return A trained xgboost model object.
 #' @importFrom xgboost xgb.DMatrix xgboost
@@ -51,7 +51,7 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
 }
 
 #' XGBoost training examples
-#' @name train_xgb_examples
+#' @name train_xgb
 #' @examples
 #' xgb_model <- train_xgb(
 #'   mapdata,
