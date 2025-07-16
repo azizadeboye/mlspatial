@@ -300,10 +300,10 @@ p3 <- ggplot(mapdata, aes(x = incidence, y = svr_pred)) +
 combined_plot <- ggarrange(p1, p2, p3, ncol = 3, nrow = 1, common.legend = FALSE)
 
 # Save to PDF
-ggsave("Observed_vs_Incidence_All_Models.pdf", plot = combined_plot, width = 12, height = 4)
+ggsave(file.path(tempdir(), "Observed_vs_Incidence_All_Models.pdf", plot = combined_plot, width = 12, height = 4))
 
 # Save to PNG
-ggsave("Observed_vs_Predicted_All_Models.png", plot = combined_plot, width = 12, height = 4, dpi = 300)
+ggsave(file.path(tempdir(), "Observed_vs_Predicted_All_Models.png", plot = combined_plot, width = 12, height = 4, dpi = 300))
 ```
 ```{r}
 ## CROSS-VALIDATION
@@ -375,9 +375,6 @@ bwplot(results)
 # 1. Random Forest Spatial Map
 mapdata$pred_rf <- predict(rf_model, newdata = mapdata)
 
-#tm_shape(mapdata) + tm_fill("pred_rf", fill.scale =tm_scale_intervals(values = "brewer.yl_gn_bu", style = "quantile"), fill.legend = tm_legend(title = "Prev_pred_rf")) + tm_borders()
-#tm_layout(title = "Random Forest: Predicted mortality Cases")
-
 tm_shape(mapdata) + 
   tm_fill("pred_rf", fill.scale =tm_scale_intervals(values = "brewer.greens",  style = "quantile"), 
           fill.legend = tm_legend(title = "Inci_pred_rf")) + tm_borders(fill_alpha = .2) + 
@@ -388,9 +385,6 @@ tm_shape(mapdata) +
 # Ensure matrix used in training
 mapdata$pred_xgb <- predict(xgb_model, newdata = x_vars)
 
-#tm_shape(mapdata) + tm_fill("pred_xgb", fill.scale =tm_scale_intervals(values = "brewer.pu_bu", style = "quantile"),  fill.legend = tm_legend(title = "Prev_pred_xgb")) + tm_borders() #+
-#tm_layout(title = "XGBoost: Predicted mortality Cases")
-
 tm_shape(mapdata) + 
   tm_fill("pred_xgb", fill.scale =tm_scale_intervals(values = "brewer.purples", style = "quantile"), 
           fill.legend = tm_legend(title = "Inci_pred_xgb")) + tm_borders(fill_alpha = .2) + 
@@ -399,9 +393,6 @@ tm_shape(mapdata) +
 
 # 3. Support Vector Regression (SVR) Spatial Map
 mapdata$pred_svr <- predict(svr_model, newdata = mapdata)
-
-#tm_shape(mapdata) + tm_fill("pred_svr", fill.scale =tm_scale_intervals(values = "brewer.gn_bu", style = "quantile"), fill.legend = tm_legend(title = "Prev_pred_svr")) + tm_borders() #+
-#tm_layout(title = "SVR: Predicted mortality Cases")
 
 tm_shape(mapdata) + 
   tm_fill("pred_svr", fill.scale =tm_scale_intervals(values = "brewer.reds", style = "quantile"), 
@@ -457,9 +448,9 @@ residuals_df <- data.frame(
 )
 
 # export
-write.csv(residuals_df, "model_residuals.csv", row.names = FALSE)
+write.csv(residuals_df, file.path(tempdir(), "model_residuals.csv", row.names = FALSE))
 library(writexl)
-write_xlsx(residuals_df, "model_residuals.xlsx")
+write_xlsx(residuals_df, file.path(tempdir(), "model_residuals.xlsx"))
 
 ### Compare residual distributions
 
@@ -496,11 +487,6 @@ map_svr <- tm_shape(mapdata) +
           fill.legend = tm_legend(title = "Inci_svr_resid")) + tm_borders(fill_alpha = .2) + 
   tm_layout(legend.text.size = 0.5, legend.position = c("left", "bottom"), 
             frame = TRUE, component.autoscale = FALSE)
-
-#map_svr <- tm_shape(mapdata) +
-# tm_fill("svr_resid", fill.scale =tm_scale_intervals(values = "brewer.rdbu", style = "quantile"), 
-#        midpoint = 0, fill.legend = tm_legend(title = "SVR Residuals")) +
-#tm_borders()
 
 #Step 3: Combine maps in a grid
 # Combine maps in a grid layout
