@@ -49,10 +49,8 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
     verbose = 0
   )
 }
+
 #' XGBoost training examples
-#'
-#' Examples of training an XGBoost model with `train_xgb`.
-#'
 #' @name train_xgb_examples
 #' @examples
 #' xgb_model <- train_xgb(
@@ -61,6 +59,7 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
 #'               magea + mageb + magec + yrb + yrc + yrd + yre,
 #'   nrounds = 100
 #' )
+#' summary(xgb_model)
 NULL
 
 

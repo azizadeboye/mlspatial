@@ -4,7 +4,7 @@
 \alias{train_xgb_examples}
 \title{XGBoost training examples}
 \description{
-Examples of training an XGBoost model with \code{train_xgb}.
+XGBoost training examples
 }
 \examples{
 xgb_model <- train_xgb(
@@ -13,4 +13,5 @@ xgb_model <- train_xgb(
               magea + mageb + magec + yrb + yrc + yrd + yre,
   nrounds = 100
 )
+summary(xgb_model)
 }
