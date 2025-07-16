@@ -29,6 +29,9 @@ train_rf <- function(data, formula, ntree = 500, seed = 123) {
 #'
 #' Trains an XGBoost regression model.
 #'
+#' @name train_xgb
+#' @title Train XGBoost model
+#'
 #' @param data A data frame with the training data.
 #' @param formula A formula defining the model structure.
 #' @param nrounds Number of boosting iterations.
@@ -48,8 +51,7 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
     nrounds = nrounds,
     max_depth = max_depth,
     eta = eta,
-    verbose = 0
-  )
+    verbose = 0)
 }
 
 #' @examples
@@ -66,20 +68,22 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
 
 #' Train Support Vector Regression (SVR) model
 #'
-#' Trains an SVR model with radial kernel.
+#' Trains an SVR model using the radial kernel.
+#'
+#' @name train_svr
+#' @title Train Support Vector Regression (SVR) model
 #'
 #' @param data A data frame containing the training data.
 #' @param formula A formula specifying the model.
 #'
-#' @return A trained svm model object.
+#' @return A trained \code{svm} model object from the \pkg{e1071} package.
+#'
 #' @importFrom e1071 svm
 #' @export
 train_svr <- function(data, formula) {
   e1071::svm(formula, data = data, type = "eps-regression", kernel = "radial")
 }
 
-#' SVR training examples
-#' @name train_svr_examples
 #' @examples
 #' \dontrun{
 #' svr_model <- train_svr(
@@ -89,4 +93,3 @@ train_svr <- function(data, formula) {
 #' )
 #' summary(svr_model)
 #' }
-NULL
