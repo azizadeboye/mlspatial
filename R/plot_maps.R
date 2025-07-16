@@ -1,11 +1,15 @@
 #' Build a tmap for a single variable
-#' @param sf_data sf object with variable
-#' @param var variable name as string
-#' @param title legend title
-#' @param palette Color palette for map
-#' @return tmap object
+#'
+#' Creates a thematic map using the `tmap` package for a single variable in an sf object.
+#'
+#' @param sf_data An sf object containing spatial data.
+#' @param var Variable name as a string to map.
+#' @param title Legend title for the fill legend.
+#' @param palette Color palette for the map (default is "reds").
+#'
+#' @return A tmap object representing the thematic map.
+#'
 #' @importFrom tmap tm_shape tm_fill tm_scale_intervals tm_legend tm_borders tm_compass tm_layout
-
 #' @export
 plot_single_map <- function(sf_data, var, title, palette = "reds") {
   tm_shape(sf_data) +
@@ -21,9 +25,22 @@ plot_single_map <- function(sf_data, var, title, palette = "reds") {
     )
 }
 
+#' @examples
+#' # Plot a single map of "incidence"
+#' plot_single_map(mapdata, "incidence", "Incidence")
+#'
+
+
 #' Arrange multiple tmap plots in a grid
-#' @param maps List of tmap objects
-#' @param ncol Number of columns
+#'
+#' Arranges a list of tmap objects in a grid layout.
+#'
+#' @param maps A list of tmap objects.
+#' @param ncol Number of columns in the grid (default is 2).
+#'
+#' @return A tmap object representing arranged maps.
+#'
+#' @importFrom tmap tmap_mode tmap_arrange
 #' @export
 plot_map_grid <- function(maps, ncol = 2) {
   old_mode <- tmap::tmap_mode("plot")
@@ -31,3 +48,12 @@ plot_map_grid <- function(maps, ncol = 2) {
   tmap::tmap_mode(old_mode)
   invisible(res)
 }
+
+#' @examples
+#' # Create individual maps
+#' p1 <- plot_single_map(mapdata, "incidence", "Incidence")
+#' p2 <- plot_single_map(mapdata, "female", "Female")
+#' p3 <- plot_single_map(mapdata, "male", "Male")
+#'
+#' # Arrange maps in a grid
+#' plot_map_grid(list(p1, p2, p3), ncol = 3)

@@ -7,17 +7,17 @@
 plot_single_map(sf_data, var, title, palette = "reds")
 }
 \arguments{
-\item{sf_data}{sf object with variable}
+\item{sf_data}{An sf object containing spatial data.}
 
-\item{var}{variable name as string}
+\item{var}{Variable name as a string to map.}
 
-\item{title}{legend title}
+\item{title}{Legend title for the fill legend.}
 
-\item{palette}{Color palette for map}
+\item{palette}{Color palette for the map (default is "reds").}
 }
 \value{
-tmap object
+A tmap object representing the thematic map.
 }
 \description{
-Build a tmap for a single variable
+Creates a thematic map using the \code{tmap} package for a single variable in an sf object.
 }

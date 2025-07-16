@@ -23,15 +23,42 @@ eval_model <- function(model, data, formula, model_type = c("rf", "xgb", "svr"))
   caret::postResample(preds, obs)
 }
 
+#' @param model A trained model
+#' @param data A data frame
+#' @param formula A formula object
+#' @param method A string indicating the model method name.
+#'
+#' @return A list or object containing evaluation metrics.
+#' @export
+#'
+
+#' @examples{
+#' \dontrun
+library(caret)
+ data(iris)
+ rf_model <- train(Sepal.Length ~ ., data = iris, method = "rf")
+ eval_model(rf_model, iris, Sepal.Length ~ ., "rf")
+#'}
+
 
 # Declare known global variables to suppress R CMD check NOTE
 utils::globalVariables(c("obs", "pred"))
 
 #' Plot observed vs predicted
 #'
+#' Creates a scatterplot of observed vs. predicted values with a 1:1 reference line,
+#' and Pearson correlation displayed.
+#'
 #' @param observed A numeric vector of observed values
 #' @param predicted A numeric vector of predicted values
 #' @param title A string for the plot title
+#'
+#' @return No return value. This function is called for its side effect of displaying a plot.
+#'
+#' @examples
+#' observed <- c(10, 20, 30, 40)
+#' predicted <- c(12, 18, 33, 39)
+#' plot_obs_vs_pred(observed, predicted, title = "Observed vs Predicted")
 #'
 #' @importFrom ggplot2 ggplot aes geom_point geom_abline labs theme_minimal
 #' @importFrom ggpubr stat_cor

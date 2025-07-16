@@ -2,8 +2,7 @@
 % Please edit documentation in R/train_MLmodels.R
 \name{train_rf}
 \alias{train_rf}
-\title{Train Random Forest
-Train a Random Forest model}
+\title{Train Random Forest model}
 \usage{
 train_rf(data, formula, ntree = 500, seed = 123)
 }
@@ -12,11 +11,13 @@ train_rf(data, formula, ntree = 500, seed = 123)
 
 \item{formula}{A formula describing the model structure.}
 
-\item{ntree}{Number of trees to grow.}
+\item{ntree}{Number of trees to grow (default 500).}
 
-\item{seed}{Random seed for reproducibility.}
+\item{seed}{Random seed for reproducibility (default 123).}
+}
+\value{
+A trained randomForest model object.
 }
 \description{
-Train Random Forest
-Train a Random Forest model
+Trains a Random Forest regression model.
 }

@@ -13,6 +13,16 @@ plot_obs_vs_pred(observed, predicted, title = "")
 
 \item{title}{A string for the plot title}
 }
+\value{
+No return value. This function is called for its side effect of displaying a plot.
+}
 \description{
-Plot observed vs predicted
+Creates a scatterplot of observed vs. predicted values with a 1:1 reference line,
+and Pearson correlation displayed.
+}
+\examples{
+observed <- c(10, 20, 30, 40)
+predicted <- c(12, 18, 33, 39)
+plot_obs_vs_pred(observed, predicted, title = "Observed vs Predicted")
+
 }
