@@ -86,10 +86,8 @@ train_svr <- function(data, formula) {
 
 #' @examples
 #' \dontrun{
-#' svr_model <- train_svr(
-#'   mapdata,
-#'   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
-#'               magea + mageb + magec + yrb + yrc + yrd + yre
-#' )
+#' svr_model <- train_svr(mapdata, incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
+#'               magea + mageb + magec + yrb + yrc + yrd + yre)
 #' summary(svr_model)
 #' }
+#'
