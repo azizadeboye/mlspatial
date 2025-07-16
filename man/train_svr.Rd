@@ -27,6 +27,8 @@ xgb_model <- train_xgb(
 
 summary(xgb_model)
 }
-Train Support
+Train Support Vector Regression (SVR) model
+
+Trains an SVR model using the radial kernel.
 
 }
