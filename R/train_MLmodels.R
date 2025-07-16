@@ -24,7 +24,6 @@ train_rf <- function(data, formula, ntree = 500, seed = 123) {
 
 
 #' Train XGBoost model
-#'
 #' Trains an XGBoost regression model.
 #'
 #' @param data A data frame with the training data.

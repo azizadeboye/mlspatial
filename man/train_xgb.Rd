@@ -31,7 +31,6 @@ rf_model <- train_rf(
   ntree = 500
 )
 Train XGBoost model
-
 Trains an XGBoost regression model.
 
 xgb_model <- train_xgb(
