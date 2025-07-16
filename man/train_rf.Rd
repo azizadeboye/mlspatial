@@ -21,3 +21,13 @@ A trained randomForest model object.
 \description{
 Trains a Random Forest regression model.
 }
+\examples{
+\dontrun{
+rf_model <- train_rf(
+  mapdata,
+  incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
+              magea + mageb + magec + yrb + yrc + yrd + yre,
+  ntree = 500
+)
+}
+}

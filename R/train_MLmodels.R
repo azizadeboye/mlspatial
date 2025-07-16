@@ -8,12 +8,6 @@
 #' @param seed Random seed for reproducibility (default 123).
 #'
 #' @return A trained randomForest model object.
-#' @export
-train_rf <- function(data, formula, ntree = 500, seed = 123) {
-  set.seed(seed)
-  randomForest::randomForest(formula, data = data, ntree = ntree, importance = TRUE)
-}
-
 #' @examples
 #' \dontrun{
 #' rf_model <- train_rf(
@@ -23,6 +17,12 @@ train_rf <- function(data, formula, ntree = 500, seed = 123) {
 #'   ntree = 500
 #' )
 #' }
+#' @export
+train_rf <- function(data, formula, ntree = 500, seed = 123) {
+  set.seed(seed)
+  randomForest::randomForest(formula, data = data, ntree = ntree, importance = TRUE)
+}
+
 
 
 #' Train XGBoost model
@@ -40,6 +40,16 @@ train_rf <- function(data, formula, ntree = 500, seed = 123) {
 #'
 #' @return A trained xgboost model object.
 #' @importFrom xgboost xgb.DMatrix xgboost
+#' @examples
+#' \dontrun{
+#' xgb_model <- train_xgb(
+#'   mapdata,
+#'   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
+#'               magea + mageb + magec + yrb + yrc + yrd + yre,
+#'   nrounds = 100)
+#'
+#' summary(xgb_model)
+#' }
 #' @export
 train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
   x <- model.matrix(formula, data = data)[, -1]
@@ -53,17 +63,6 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
     eta = eta,
     verbose = 0)
 }
-
-#' @examples
-#' \dontrun{
-#' xgb_model <- train_xgb(
-#'   mapdata,
-#'   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
-#'               magea + mageb + magec + yrb + yrc + yrd + yre,
-#'   nrounds = 100)
-#'
-#' summary(xgb_model)
-#' }
 
 
 #' Train Support
@@ -79,14 +78,15 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
 #' @return A trained \code{svm} model object from the \pkg{e1071} package.
 #'
 #' @importFrom e1071 svm
-#' @export
-train_svr <- function(data, formula) {
-  e1071::svm(formula, data = data, type = "eps-regression", kernel = "radial")
-}
-
 #' @examples
 #' \dontrun{
 #' svr_model <- train_svr(mapdata, incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
 #'               magea + mageb + magec + yrb + yrc + yrd + yre)
 #' summary(svr_model)
 #' }
+#' @export
+train_svr <- function(data, formula) {
+  e1071::svm(formula, data = data, type = "eps-regression", kernel = "radial")
+}
+
+

@@ -15,20 +15,15 @@ train_svr(data, formula)
 A trained \code{svm} model object from the \pkg{e1071} package.
 }
 \description{
-Train Support Vector Regression (SVR) model
+Train Support
+}
+\details{
+Trains an SVR model using the radial kernel.
 }
 \examples{
 \dontrun{
-xgb_model <- train_xgb(
-  mapdata,
-  incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
-              magea + mageb + magec + yrb + yrc + yrd + yre,
-  nrounds = 100)
-
-summary(xgb_model)
+svr_model <- train_svr(mapdata, incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
+              magea + mageb + magec + yrb + yrc + yrd + yre)
+summary(svr_model)
 }
-Train Support
-
-Trains an SVR model using the radial kernel.
-
 }
