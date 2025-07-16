@@ -15,15 +15,18 @@ train_rf <- function(data, formula, ntree = 500, seed = 123) {
 }
 
 #' @examples
+#' \dontrun{
 #' rf_model <- train_rf(
 #'   mapdata,
 #'   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
 #'               magea + mageb + magec + yrb + yrc + yrd + yre,
 #'   ntree = 500
 #' )
+#' }
 
 
 #' Train XGBoost model
+#'
 #' Trains an XGBoost regression model.
 #'
 #' @param data A data frame with the training data.
@@ -50,8 +53,9 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
 }
 
 #' XGBoost training examples
-#' @name train_xgb
+#' @name train_xgb_examples
 #' @examples
+#' \dontrun{
 #' xgb_model <- train_xgb(
 #'   mapdata,
 #'   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
@@ -59,8 +63,8 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
 #'   nrounds = 100
 #' )
 #' summary(xgb_model)
+#' }
 NULL
-
 
 
 #' Train Support Vector Regression (SVR) model
@@ -80,11 +84,12 @@ train_svr <- function(data, formula) {
 #' SVR training examples
 #' @name train_svr_examples
 #' @examples
+#' \dontrun{
 #' svr_model <- train_svr(
 #'   mapdata,
 #'   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
 #'               magea + mageb + magec + yrb + yrc + yrd + yre
 #' )
 #' summary(svr_model)
+#' }
 NULL
-
