@@ -90,4 +90,3 @@ train_svr <- function(data, formula) {
 #'               magea + mageb + magec + yrb + yrc + yrd + yre)
 #' summary(svr_model)
 #' }
-#'
