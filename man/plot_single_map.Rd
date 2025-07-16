@@ -21,3 +21,7 @@ A tmap object representing the thematic map.
 \description{
 Creates a thematic map using the \code{tmap} package for a single variable in an sf object.
 }
+\examples{
+# Plot a single map of "incidence"
+plot_single_map(mapdata, "incidence", "Incidence")
+}

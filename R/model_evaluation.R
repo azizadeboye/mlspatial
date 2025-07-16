@@ -1,10 +1,11 @@
 #' Get RMSE/MAE/R² metrics on training data
-#' #' Evaluate Model Performance
+#'
+#' Evaluate Model Performance by calculating RMSE, MAE, and R² metrics.
 #'
 #' @param model A trained model
 #' @param data A data frame
 #' @param formula A formula object
-#' @param model_type Character: "rf", or "xgb", "svr"
+#' @param model_type Character string: one of "rf", "xgb", or "svr"
 #'
 #' @importFrom ggplot2 aes geom_point geom_abline labs theme_minimal
 #' @importFrom dplyr %>%
@@ -23,37 +24,24 @@ eval_model <- function(model, data, formula, model_type = c("rf", "xgb", "svr"))
   caret::postResample(preds, obs)
 }
 
-#' @param model A trained model
-#' @param data A data frame
-#' @param formula A formula object
-#' @param method A string indicating the model method name.
-#'
-#' @return A list or object containing evaluation metrics.
-#' @export
-#'
+#' @examples
+#' library(caret)
+#' data(iris)
+#' rf_model <- train(Sepal.Length ~ ., data = iris, method = "rf")
+#' eval_model(rf_model, iris, Sepal.Length ~ ., "rf")
 
-#' @examples{
-#' \dontrun
-library(caret)
- data(iris)
- rf_model <- train(Sepal.Length ~ ., data = iris, method = "rf")
- eval_model(rf_model, iris, Sepal.Length ~ ., "rf")
-#'}
-
-
-# Declare known global variables to suppress R CMD check NOTE
+#' Declare known global variables to suppress R CMD check NOTE
 utils::globalVariables(c("obs", "pred"))
 
-#' Plot observed vs predicted
+#' Plot observed vs predicted values with correlation
 #'
-#' Creates a scatterplot of observed vs. predicted values with a 1:1 reference line,
-#' and Pearson correlation displayed.
+#' Creates a scatterplot of observed vs predicted values, with a 1:1 reference line and Pearson's R².
 #'
-#' @param observed A numeric vector of observed values
-#' @param predicted A numeric vector of predicted values
-#' @param title A string for the plot title
+#' @param observed Numeric vector of observed values.
+#' @param predicted Numeric vector of predicted values.
+#' @param title String for the plot title (default: "").
 #'
-#' @return No return value. This function is called for its side effect of displaying a plot.
+#' @return No return value; called for side effect of displaying a plot.
 #'
 #' @examples
 #' observed <- c(10, 20, 30, 40)

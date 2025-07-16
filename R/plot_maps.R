@@ -11,6 +11,10 @@
 #'
 #' @importFrom tmap tm_shape tm_fill tm_scale_intervals tm_legend tm_borders tm_compass tm_layout
 #' @export
+#'
+#' @examples
+#' # Plot a single map of "incidence"
+#' plot_single_map(mapdata, "incidence", "Incidence")
 plot_single_map <- function(sf_data, var, title, palette = "reds") {
   tm_shape(sf_data) +
     tm_fill(var, fill.scale = tm_scale_intervals(
@@ -25,15 +29,9 @@ plot_single_map <- function(sf_data, var, title, palette = "reds") {
     )
 }
 
-#' @examples
-#' # Plot a single map of "incidence"
-#' plot_single_map(mapdata, "incidence", "Incidence")
+#' Arrange Multiple tmap Plots in a Grid
 #'
-
-
-#' Arrange multiple tmap plots in a grid
-#'
-#' Arranges a list of tmap objects in a grid layout.
+#' Arrange a list of tmap objects into a grid layout.
 #'
 #' @param maps A list of tmap objects.
 #' @param ncol Number of columns in the grid (default is 2).
@@ -42,13 +40,7 @@ plot_single_map <- function(sf_data, var, title, palette = "reds") {
 #'
 #' @importFrom tmap tmap_mode tmap_arrange
 #' @export
-plot_map_grid <- function(maps, ncol = 2) {
-  old_mode <- tmap::tmap_mode("plot")
-  res <- do.call(tmap::tmap_arrange, c(maps, list(ncol = ncol)))
-  tmap::tmap_mode(old_mode)
-  invisible(res)
-}
-
+#'
 #' @examples
 #' # Create individual maps
 #' p1 <- plot_single_map(mapdata, "incidence", "Incidence")
@@ -57,3 +49,9 @@ plot_map_grid <- function(maps, ncol = 2) {
 #'
 #' # Arrange maps in a grid
 #' plot_map_grid(list(p1, p2, p3), ncol = 3)
+plot_map_grid <- function(maps, ncol = 2) {
+  old_mode <- tmap::tmap_mode("plot")
+  res <- do.call(tmap::tmap_arrange, c(maps, list(ncol = ncol)))
+  tmap::tmap_mode(old_mode)
+  invisible(res)
+}

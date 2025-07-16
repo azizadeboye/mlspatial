@@ -2,23 +2,22 @@
 % Please edit documentation in R/model_evaluation.R
 \name{plot_obs_vs_pred}
 \alias{plot_obs_vs_pred}
-\title{Plot observed vs predicted}
+\title{Plot observed vs predicted values with correlation}
 \usage{
 plot_obs_vs_pred(observed, predicted, title = "")
 }
 \arguments{
-\item{observed}{A numeric vector of observed values}
+\item{observed}{Numeric vector of observed values.}
 
-\item{predicted}{A numeric vector of predicted values}
+\item{predicted}{Numeric vector of predicted values.}
 
-\item{title}{A string for the plot title}
+\item{title}{String for the plot title (default: "").}
 }
 \value{
-No return value. This function is called for its side effect of displaying a plot.
+No return value; called for side effect of displaying a plot.
 }
 \description{
-Creates a scatterplot of observed vs. predicted values with a 1:1 reference line,
-and Pearson correlation displayed.
+Creates a scatterplot of observed vs predicted values, with a 1:1 reference line and Pearson's R².
 }
 \examples{
 observed <- c(10, 20, 30, 40)

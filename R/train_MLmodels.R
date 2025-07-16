@@ -15,8 +15,12 @@ train_rf <- function(data, formula, ntree = 500, seed = 123) {
 }
 
 #' @examples
-#' rf_model <- train_rf(mapdata, incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
-#'                        magea + mageb + magec + yrb + yrc + yrd + yre, ntree = 500)
+#' rf_model <- train_rf(
+#'   mapdata,
+#'   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
+#'               magea + mageb + magec + yrb + yrc + yrd + yre,
+#'   ntree = 500
+#' )
 
 
 #' Train XGBoost model
@@ -36,13 +40,23 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
   x <- model.matrix(formula, data = data)[, -1]
   label <- eval(formula[[2]], data)
   dtrain <- xgboost::xgb.DMatrix(x, label = label)
-  xgboost::xgboost(data = dtrain, objective = "reg:squarederror",
-                   nrounds = nrounds, max_depth = max_depth, eta = eta, verbose = 0)
+  xgboost::xgboost(
+    data = dtrain,
+    objective = "reg:squarederror",
+    nrounds = nrounds,
+    max_depth = max_depth,
+    eta = eta,
+    verbose = 0
+  )
 }
 
 #' @examples
-#' xgb_model <- train_xgb(mapdata, incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
-#'                          magea + mageb + magec + yrb + yrc + yrd + yre, nrounds = 100)
+#' xgb_model <- train_xgb(
+#'   mapdata,
+#'   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
+#'               magea + mageb + magec + yrb + yrc + yrd + yre,
+#'   nrounds = 100
+#' )
 
 
 #' Train Support Vector Regression (SVR) model
@@ -60,6 +74,9 @@ train_svr <- function(data, formula) {
 }
 
 #' @examples
-#' svr_model <- train_svr(mapdata, incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
-#'                          magea + mageb + magec + yrb + yrc + yrd + yre)
+#' svr_model <- train_svr(
+#'   mapdata,
+#'   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
+#'               magea + mageb + magec + yrb + yrc + yrd + yre
+#' )
 #' summary(svr_model)
