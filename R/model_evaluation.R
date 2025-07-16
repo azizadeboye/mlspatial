@@ -24,13 +24,26 @@ eval_model <- function(model, data, formula, model_type = c("rf", "xgb", "svr"))
   caret::postResample(preds, obs)
 }
 
+#' Examples for model evaluation functions
+#'
+#' @name model_evaluation_examples
 #' @examples
+#' \dontrun{
 #' library(caret)
 #' data(iris)
 #' rf_model <- train(Sepal.Length ~ ., data = iris, method = "rf")
 #' eval_model(rf_model, iris, Sepal.Length ~ ., "rf")
+#' }
+NULL
+
 
 #' Declare known global variables to suppress R CMD check NOTE
+#' Global variables used in evaluation functions
+#'
+#' This is to suppress R CMD check notes about undefined global variables.
+#'
+#' @name global_variables_eval
+NULL
 utils::globalVariables(c("obs", "pred"))
 
 #' Plot observed vs predicted values with correlation

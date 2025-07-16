@@ -49,7 +49,11 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
     verbose = 0
   )
 }
-
+#' XGBoost training examples
+#'
+#' Examples of training an XGBoost model with `train_xgb`.
+#'
+#' @name train_xgb_examples
 #' @examples
 #' xgb_model <- train_xgb(
 #'   mapdata,
@@ -57,6 +61,8 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
 #'               magea + mageb + magec + yrb + yrc + yrd + yre,
 #'   nrounds = 100
 #' )
+NULL
+
 
 
 #' Train Support Vector Regression (SVR) model
@@ -73,6 +79,8 @@ train_svr <- function(data, formula) {
   e1071::svm(formula, data = data, type = "eps-regression", kernel = "radial")
 }
 
+#' SVR training examples
+#' @name train_svr_examples
 #' @examples
 #' svr_model <- train_svr(
 #'   mapdata,
@@ -80,3 +88,5 @@ train_svr <- function(data, formula) {
 #'               magea + mageb + magec + yrb + yrc + yrd + yre
 #' )
 #' summary(svr_model)
+NULL
+
