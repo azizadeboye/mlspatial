@@ -25,9 +25,15 @@ Train XGBoost model
 }
 \examples{
 \dontrun{
-xgb_model <- train_xgb(
+rf_model <- train_rf(
   mapdata,
   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
               magea + mageb + magec + yrb + yrc + yrd + yre,
-  nrounds = 100)
+  ntree = 500
+)
+}
+Train XGBoost model
+
+Trains an XGBoost regression model.
+
 }

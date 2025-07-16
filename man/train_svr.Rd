@@ -19,9 +19,16 @@ Train Support Vector Regression (SVR) model
 }
 \examples{
 \dontrun{
-svr_model <- train_svr(
+xgb_model <- train_xgb(
   mapdata,
   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
-              magea + mageb + magec + yrb + yrc + yrd + yre)
-summary(svr_model)
+              magea + mageb + magec + yrb + yrc + yrd + yre,
+  nrounds = 100)
+
+summary(xgb_model)
+}
+Train Support
+
+Trains an SVR model using the radial kernel.
+
 }
