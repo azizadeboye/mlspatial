@@ -52,19 +52,16 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
   )
 }
 
-#' XGBoost training examples
-#' @name train_xgb_examples
 #' @examples
 #' \dontrun{
 #' xgb_model <- train_xgb(
 #'   mapdata,
 #'   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
 #'               magea + mageb + magec + yrb + yrc + yrd + yre,
-#'   nrounds = 100
-#' )
+#'   nrounds = 100)
+#'
 #' summary(xgb_model)
 #' }
-NULL
 
 
 #' Train Support Vector Regression (SVR) model
