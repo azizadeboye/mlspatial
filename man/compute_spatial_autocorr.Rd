@@ -31,17 +31,17 @@ library(sf)
 library(spdep)
 library(dplyr)
 
-# Load and prepare spatial data
+Load and prepare spatial data
 mapdata <- st_read(system.file("shape/nc.shp", package="sf"), quiet = TRUE)
 mapdata <- st_make_valid(mapdata)
 
-# Variable to analyze
+Variable to analyze
 values <- rnorm(nrow(mapdata))
 
-# Run function
+Run function
 result <- compute_spatial_autocorr(mapdata, values, signif = 0.05)
 
-# Inspect results
+Inspect results
 head(result$data)
 result$moran
 }
