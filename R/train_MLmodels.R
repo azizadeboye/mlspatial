@@ -66,7 +66,7 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
 #' }
 
 
-#' Train Support Vector Regression (SVR) model
+#' Train Support
 #'
 #' Trains an SVR model using the radial kernel.
 #'
