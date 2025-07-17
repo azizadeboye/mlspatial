@@ -117,29 +117,9 @@ p12 <- tm_shape(mapdata) +
   tm_fill("magea", fill.scale =tm_scale_intervals(values = "brewer.reds", style = "quantile"), 
           fill.legend = tm_legend(title = "Male:<20yrs")) + tm_borders(fill_alpha = .3) + tm_compass() + 
   tm_layout(legend.text.size = 0.5, legend.position = c("left", "bottom"), frame = TRUE, component.autoscale = FALSE)
-p13 <- tm_shape(mapdata) + 
-  tm_fill("yra", fill.scale =tm_scale_intervals(values = "brewer.reds", style = "quantile"), 
-          fill.legend = tm_legend(title = "Year:2017")) + tm_borders(fill_alpha = .3) + tm_compass() + 
-  tm_layout(legend.text.size = 0.5, legend.position = c("left", "bottom"), frame = TRUE, component.autoscale = FALSE)
-p14 <- tm_shape(mapdata) + 
-  tm_fill("yrb", fill.scale =tm_scale_intervals(values = "brewer.reds", style = "quantile"), 
-          fill.legend = tm_legend(title = "year:2018")) + tm_borders(fill_alpha = .3) + tm_compass() + 
-  tm_layout(legend.text.size = 0.5, legend.position = c("left", "bottom"), frame = TRUE, component.autoscale = FALSE)
-p15 <- tm_shape(mapdata) + 
-  tm_fill("yrc", fill.scale =tm_scale_intervals(values = "brewer.reds", style = "quantile"), 
-          fill.legend = tm_legend(title = "Year:2019")) + tm_borders(fill_alpha = .3) + tm_compass() + 
-  tm_layout(legend.text.size = 0.5, legend.position = c("left", "bottom"), frame = TRUE, component.autoscale = FALSE)
-p16 <- tm_shape(mapdata) + 
-  tm_fill("yrd", fill.scale =tm_scale_intervals(values = "brewer.reds", style = "quantile"), 
-          fill.legend = tm_legend(title = "Year:2020")) + tm_borders(fill_alpha = .3) + tm_compass() + 
-  tm_layout(legend.text.size = 0.5, legend.position = c("left", "bottom"), frame = TRUE, component.autoscale = FALSE)
-p17 <- tm_shape(mapdata) + 
-  tm_fill("yre", fill.scale =tm_scale_intervals(values = "brewer.reds", style = "quantile"), 
-          fill.legend = tm_legend(title = "Year: 2021")) + tm_borders(fill_alpha = .3) + tm_compass() + 
-  tm_layout(legend.text.size = 0.5, legend.position = c("left", "bottom"), frame = TRUE, component.autoscale = FALSE)
 
 current.mode <- tmap_mode("plot")
-tmap_arrange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, 
+tmap_arrange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, 
              widths = c(.75, .75))
 tmap_mode(current.mode)
 
@@ -312,11 +292,6 @@ p3 <- ggplot(mapdata, aes(x = incidence, y = svr_pred)) +
 
 combined_plot <- ggarrange(p1, p2, p3, ncol = 3, nrow = 1, common.legend = FALSE)
 
-# Save to PDF
-ggsave(file.path(tempdir(), "Observed_vs_Incidence_All_Models.pdf", plot = combined_plot, width = 12, height = 4))
-
-# Save to PNG
-ggsave(file.path(tempdir(), "Observed_vs_Predicted_All_Models.png", plot = combined_plot, width = 12, height = 4, dpi = 300))
 ```
 ```{r}
 ## CROSS-VALIDATION
@@ -388,9 +363,6 @@ bwplot(results)
 # 1. Random Forest Spatial Map
 mapdata$pred_rf <- predict(rf_model, newdata = mapdata)
 
-#tm_shape(mapdata) + tm_fill("pred_rf", fill.scale =tm_scale_intervals(values = "brewer.yl_gn_bu", style = "quantile"), fill.legend = tm_legend(title = "Prev_pred_rf")) + tm_borders()
-#tm_layout(title = "Random Forest: Predicted mortality Cases")
-
 tm_shape(mapdata) + 
   tm_fill("pred_rf", fill.scale =tm_scale_intervals(values = "brewer.greens",  style = "quantile"), 
           fill.legend = tm_legend(title = "Inci_pred_rf")) + tm_borders(fill_alpha = .2) + 
@@ -401,9 +373,6 @@ tm_shape(mapdata) +
 # Ensure matrix used in training
 mapdata$pred_xgb <- predict(xgb_model, newdata = x_vars)
 
-#tm_shape(mapdata) + tm_fill("pred_xgb", fill.scale =tm_scale_intervals(values = "brewer.pu_bu", style = "quantile"),  fill.legend = tm_legend(title = "Prev_pred_xgb")) + tm_borders() #+
-#tm_layout(title = "XGBoost: Predicted mortality Cases")
-
 tm_shape(mapdata) + 
   tm_fill("pred_xgb", fill.scale =tm_scale_intervals(values = "brewer.purples", style = "quantile"), 
           fill.legend = tm_legend(title = "Inci_pred_xgb")) + tm_borders(fill_alpha = .2) + 
@@ -412,9 +381,6 @@ tm_shape(mapdata) +
 
 # 3. Support Vector Regression (SVR) Spatial Map
 mapdata$pred_svr <- predict(svr_model, newdata = mapdata)
-
-#tm_shape(mapdata) + tm_fill("pred_svr", fill.scale =tm_scale_intervals(values = "brewer.gn_bu", style = "quantile"), fill.legend = tm_legend(title = "Prev_pred_svr")) + tm_borders() #+
-#tm_layout(title = "SVR: Predicted mortality Cases")
 
 tm_shape(mapdata) + 
   tm_fill("pred_svr", fill.scale =tm_scale_intervals(values = "brewer.reds", style = "quantile"), 
@@ -470,9 +436,7 @@ residuals_df <- data.frame(
 )
 
 # export
-write.csv(residuals_df, file.path(tempdir(), "model_residuals.csv", row.names = FALSE))
 library(writexl)
-write_xlsx(residuals_df, file.path(tempdir(), "model_residuals.xlsx"))
 
 ### Compare residual distributions
 
