@@ -23,7 +23,7 @@ Creates a thematic map using the \code{tmap} package for a single variable in an
 }
 \examples{
 \donttest{
-# Plot a single map of "incidence"
-plot_single_map(mapdata, "incidence", "Incidence")
+# This example requires 'mapdata', which is not included in the package
+p1 <- plot_single_map(mapdata, "incidence", "Incidence")
 }
 }
