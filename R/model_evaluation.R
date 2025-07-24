@@ -29,11 +29,17 @@ eval_model <- function(model, data, formula, model_type = c("rf", "xgb", "svr"))
 #'
 #' @name model_evaluation_examples
 #' @examples
-#' \dontrun{
-#' library(caret)
-#' data(iris)
-#' rf_model <- train(Sepal.Length ~ ., data = iris, method = "rf")
-#' eval_model(rf_model, iris, Sepal.Length ~ ., "rf")
+#' \donttest{
+#' library(randomForest)
+#' data(panc_incidence)
+#' mapdata <- join_data(africa_shp, panc_incidence, by = "NAME")
+#' rf_model <- randomForest(incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
+#' magea + mageb + magec + yrb + yrc + yrd + yre, data = mapdata, ntree = 500,
+#' importance = TRUE)
+#'
+#' rf_preds <- predict(rf_model, newdata = mapdata)
+#' rf_metrics <- postResample(pred = rf_preds, obs = mapdata$incidence)
+#' print(rf_metrics)
 #' }
 NULL
 
