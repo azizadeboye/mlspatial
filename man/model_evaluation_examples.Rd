@@ -9,6 +9,7 @@ Examples for model evaluation functions
 \examples{
 \donttest{
 library(randomForest)
+library(caret)
 data(panc_incidence)
 mapdata <- join_data(africa_shp, panc_incidence, by = "NAME")
 rf_model <- randomForest(incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
