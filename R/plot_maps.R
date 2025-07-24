@@ -45,11 +45,13 @@ plot_single_map <- function(sf_data, var, title, palette = "reds") {
 #'
 #' @examples
 #' \donttest{
-#' # Assume 'mapdata' is an sf object with spatial data and variables
-#' p1 <- plot_single_map(mapdata, "incidence", "Incidence")
-#' p2 <- plot_single_map(mapdata, "female", "Female")
-#' p3 <- plot_single_map(mapdata, "male", "Male")
-#' plot_map_grid(list(p1, p2, p3), ncol = 3)
+#' library(sf)
+#' # Create example sf object
+#' nc <- st_read(system.file("shape/nc.shp", package = "sf"), quiet = TRUE)
+#' nc$incidence <- runif(nrow(nc), 0, 100)
+#'
+#' # Plot
+#' p1 <- plot_single_map(nc, "incidence", "Incidence")
 #' }
 
 plot_map_grid <- function(maps, ncol = 2) {
