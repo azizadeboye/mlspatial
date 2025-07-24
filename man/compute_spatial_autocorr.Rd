@@ -2,7 +2,7 @@
 % Please edit documentation in R/spatial_autocorrelation.R
 \name{compute_spatial_autocorr}
 \alias{compute_spatial_autocorr}
-\title{#Compute Moran's I & LISA, classify clusters}
+\title{Compute Moran's I & LISA, classify clusters}
 \usage{
 compute_spatial_autocorr(sf_data, values, signif = 0.05)
 }
@@ -22,8 +22,8 @@ spatial lag, local Moran's I values, z-scores, p-values, and cluster classificat
 }
 }
 \description{
-#Computes global and local Moran’s I to assess spatial autocorrelation
-#and classifies observations into spatial cluster types (e.g., High-High).
+Computes global and local Moran’s I to assess spatial autocorrelation
+and classifies observations into spatial cluster types (e.g., High-High).
 }
 \examples{
 \dontrun{

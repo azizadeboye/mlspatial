@@ -1,7 +1,7 @@
-#' #Compute Moran's I & LISA, classify clusters
+#' Compute Moran's I & LISA, classify clusters
 #'
-#' #Computes global and local Moran’s I to assess spatial autocorrelation
-#' #and classifies observations into spatial cluster types (e.g., High-High).
+#' Computes global and local Moran’s I to assess spatial autocorrelation
+#' and classifies observations into spatial cluster types (e.g., High-High).
 #'
 #' @param sf_data An \code{sf} object containing spatial features.
 #' @param values A numeric vector or column name with the variable to test.
