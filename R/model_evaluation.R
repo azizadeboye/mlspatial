@@ -6,6 +6,7 @@
 #' @param data A data frame
 #' @param formula A formula object
 #' @param model_type Character string: one of "rf", "xgb", or "svr"
+#' @return A numeric value representing the model's accuracy
 #'
 #' @importFrom ggplot2 aes geom_point geom_abline labs theme_minimal
 #' @importFrom dplyr %>%

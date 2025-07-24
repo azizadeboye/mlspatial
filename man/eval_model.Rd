@@ -15,6 +15,9 @@ eval_model(model, data, formula, model_type = c("rf", "xgb", "svr"))
 
 \item{model_type}{Character string: one of "rf", "xgb", or "svr"}
 }
+\value{
+A numeric value representing the model's accuracy
+}
 \description{
 Evaluate Model Performance by calculating RMSE, MAE, and R² metrics.
 }
