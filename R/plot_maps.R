@@ -51,13 +51,23 @@ plot_single_map <- function(sf_data, var, title, palette = "reds") {
 #' @examples
 #' \donttest{
 #' library(sf)
-#' # Create example sf object
-#' nc <- st_read(system.file("shape/nc.shp", package = "sf"), quiet = TRUE)
-#' nc$incidence <- runif(nrow(nc), 0, 100)
+#' library(tmap)
 #'
-#' # Plot
-#' p1 <- plot_map_grid(nc, "incidence", "Incidence")
+#' # Load sample spatial data
+#' nc <- st_read(system.file("shape/nc.shp", package = "sf"), quiet = TRUE)
+#'
+#' # Add mock variables to map
+#' nc$var1 <- runif(nrow(nc), 0, 100)
+#' nc$var2 <- runif(nrow(nc), 10, 200)
+#'
+#' # Create individual maps
+#' map1 <- tm_shape(nc) + tm_fill("var1", title = "Variable 1")
+#' map2 <- tm_shape(nc) + tm_fill("var2", title = "Variable 2")
+#'
+#' # Arrange the maps in a grid using your function
+#' plot_map_grid(list(map1, map2), ncol = 2)
 #' }
+
 
 plot_map_grid <- function(maps, ncol = 2) {
   old_mode <- tmap::tmap_mode("plot")
