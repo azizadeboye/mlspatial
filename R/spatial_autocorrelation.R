@@ -1,7 +1,7 @@
-#' Compute Moran's I & LISA, classify clusters
+#' #Compute Moran's I & LISA, classify clusters
 #'
-#' Computes global and local Moran’s I to assess spatial autocorrelation
-#' and classifies observations into spatial cluster types (e.g., High-High).
+#' #Computes global and local Moran’s I to assess spatial autocorrelation
+#' #and classifies observations into spatial cluster types (e.g., High-High).
 #'
 #' @param sf_data An \code{sf} object containing spatial features.
 #' @param values A numeric vector or column name with the variable to test.
@@ -20,17 +20,17 @@
 #' library(spdep)
 #' library(dplyr)
 #'
-#' Load and prepare spatial data
+#' #Load and prepare spatial data
 #' mapdata <- st_read(system.file("shape/nc.shp", package="sf"), quiet = TRUE)
 #' mapdata <- st_make_valid(mapdata)
 #'
-#' Variable to analyze
+#' #Variable to analyze
 #' values <- rnorm(nrow(mapdata))
 #'
-#' Run function
+#' #Run function
 #' result <- compute_spatial_autocorr(mapdata, values, signif = 0.05)
 #'
-#' Inspect results
+#' #Inspect results
 #' head(result$data)
 #' result$moran
 #' }
