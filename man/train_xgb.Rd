@@ -27,7 +27,7 @@ Train XGBoost model
 Trains an XGBoost regression model.
 }
 \examples{
-\dontrun{
+\donttest{
 xgb_model <- train_xgb(
   mapdata,
   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +

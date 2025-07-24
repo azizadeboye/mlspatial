@@ -21,7 +21,7 @@ Train Support
 Trains an SVR model using the radial kernel.
 }
 \examples{
-\dontrun{
+\donttest{
 svr_model <- train_svr(
     mapdata,
     incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +

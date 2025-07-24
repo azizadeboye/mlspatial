@@ -13,7 +13,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Plot a single map of "incidence"
 #' plot_single_map(mapdata, "incidence", "Incidence")
 #' }
@@ -44,7 +44,7 @@ plot_single_map <- function(sf_data, var, title, palette = "reds") {
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Assume 'mapdata' is an sf object with spatial data and variables
 #' p1 <- plot_single_map(mapdata, "incidence", "Incidence")
 #' p2 <- plot_single_map(mapdata, "female", "Female")

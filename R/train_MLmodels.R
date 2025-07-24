@@ -9,7 +9,7 @@
 #'
 #' @return A trained randomForest model object.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' rf_model <- train_rf(
 #'   mapdata,
 #'   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
@@ -41,7 +41,7 @@ train_rf <- function(data, formula, ntree = 500, seed = 123) {
 #' @return A trained xgboost model object.
 #' @importFrom xgboost xgb.DMatrix xgboost
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' xgb_model <- train_xgb(
 #'   mapdata,
 #'   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
@@ -79,7 +79,7 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
 #'
 #' @importFrom e1071 svm
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' svr_model <- train_svr(
 #'     mapdata,
 #'     incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +

@@ -18,7 +18,7 @@ A tmap object representing arranged maps.
 Arrange a list of tmap objects into a grid layout.
 }
 \examples{
-\dontrun{
+\donttest{
 # Assume 'mapdata' is an sf object with spatial data and variables
 p1 <- plot_single_map(mapdata, "incidence", "Incidence")
 p2 <- plot_single_map(mapdata, "female", "Female")

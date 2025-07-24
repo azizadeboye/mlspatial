@@ -15,7 +15,7 @@
 #' }
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' library(sf)
 #' library(spdep)
 #' library(dplyr)

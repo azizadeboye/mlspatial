@@ -22,7 +22,7 @@ A trained randomForest model object.
 Trains a Random Forest regression model.
 }
 \examples{
-\dontrun{
+\donttest{
 rf_model <- train_rf(
   mapdata,
   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +

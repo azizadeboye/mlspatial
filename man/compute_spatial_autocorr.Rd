@@ -26,7 +26,7 @@ Computes global and local Moran’s I to assess spatial autocorrelation
 and classifies observations into spatial cluster types (e.g., High-High).
 }
 \examples{
-\dontrun{
+\donttest{
 library(sf)
 library(spdep)
 library(dplyr)
