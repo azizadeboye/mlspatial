@@ -17,17 +17,25 @@ train_rf(data, formula, ntree = 500, seed = 123)
 }
 \value{
 A trained randomForest model object.
+
+#' @examples
+\donttest{
+# Load required package
+library(randomForest)
+
+# Use built-in dataset
+data(mtcars)
+
+# Define formula: Predict mpg based on other variables
+rf_formula <- mpg ~ cyl + disp + hp + wt
+
+# Train random forest model
+rf_model <- train_rf(data = mtcars, formula = rf_formula, ntree = 100)
+
+# View model summary
+print(rf_model)
+}
 }
 \description{
 Trains a Random Forest regression model.
-}
-\examples{
-\donttest{
-rf_model <- train_rf(
-  mapdata,
-  incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
-              magea + mageb + magec + yrb + yrc + yrd + yre,
-  ntree = 500
-)
-}
 }

@@ -22,10 +22,23 @@ Trains an SVR model using the radial kernel.
 }
 \examples{
 \donttest{
-svr_model <- train_svr(
-    mapdata,
-    incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
-              magea + mageb + magec + yrb + yrc + yrd + yre)
-summary(svr_model)
+# Load required package
+library(e1071)
+
+# Use built-in dataset
+data(mtcars)
+
+# Define regression formula
+svr_formula <- mpg ~ cyl + disp + hp + wt
+
+# Train SVR model
+svr_model <- train_svr(data = mtcars, formula = svr_formula)
+
+# Print model summary
+print(svr_model)
+
+# Predict on the same data (for illustration)
+preds <- predict(svr_model, newdata = mtcars)
+head(preds)
 }
 }

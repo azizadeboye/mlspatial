@@ -8,15 +8,25 @@
 #' @param seed Random seed for reproducibility (default 123).
 #'
 #' @return A trained randomForest model object.
-#' @examples
+#'
+#' #' @examples
 #' \donttest{
-#' rf_model <- train_rf(
-#'   mapdata,
-#'   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
-#'               magea + mageb + magec + yrb + yrc + yrd + yre,
-#'   ntree = 500
-#' )
+#' # Load required package
+#' library(randomForest)
+#'
+#' # Use built-in dataset
+#' data(mtcars)
+#'
+#' # Define formula: Predict mpg based on other variables
+#' rf_formula <- mpg ~ cyl + disp + hp + wt
+#'
+#' # Train random forest model
+#' rf_model <- train_rf(data = mtcars, formula = rf_formula, ntree = 100)
+#'
+#' # View model summary
+#' print(rf_model)
 #' }
+#'
 #' @export
 train_rf <- function(data, formula, ntree = 500, seed = 123) {
   set.seed(seed)
@@ -42,13 +52,20 @@ train_rf <- function(data, formula, ntree = 500, seed = 123) {
 #' @importFrom xgboost xgb.DMatrix xgboost
 #' @examples
 #' \donttest{
-#' xgb_model <- train_xgb(
-#'   mapdata,
-#'   incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
-#'               magea + mageb + magec + yrb + yrc + yrd + yre,
-#'   nrounds = 100)
+#' # Load required package
+#' library(xgboost)
 #'
-#' summary(xgb_model)
+#' # Use built-in dataset
+#' data(mtcars)
+#'
+#' # Define regression formula
+#' xgb_formula <- mpg ~ cyl + disp + hp + wt
+#'
+#' # Train XGBoost model
+#' xgb_model <- train_xgb(data = mtcars, formula = xgb_formula, nrounds = 50)
+#'
+#' # Print model summary
+#' print(xgb_model)
 #' }
 #' @export
 train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
@@ -80,11 +97,24 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
 #' @importFrom e1071 svm
 #' @examples
 #' \donttest{
-#' svr_model <- train_svr(
-#'     mapdata,
-#'     incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
-#'               magea + mageb + magec + yrb + yrc + yrd + yre)
-#' summary(svr_model)
+#' # Load required package
+#' library(e1071)
+#'
+#' # Use built-in dataset
+#' data(mtcars)
+#'
+#' # Define regression formula
+#' svr_formula <- mpg ~ cyl + disp + hp + wt
+#'
+#' # Train SVR model
+#' svr_model <- train_svr(data = mtcars, formula = svr_formula)
+#'
+#' # Print model summary
+#' print(svr_model)
+#'
+#' # Predict on the same data (for illustration)
+#' preds <- predict(svr_model, newdata = mtcars)
+#' head(preds)
 #' }
 #' @export
 train_svr <- function(data, formula) {

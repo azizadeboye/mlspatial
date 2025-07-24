@@ -28,12 +28,19 @@ Trains an XGBoost regression model.
 }
 \examples{
 \donttest{
-xgb_model <- train_xgb(
-  mapdata,
-  incidence ~ female + male + agea + ageb + agec + fagea + fageb + fagec +
-              magea + mageb + magec + yrb + yrc + yrd + yre,
-  nrounds = 100)
+# Load required package
+library(xgboost)
 
-summary(xgb_model)
+# Use built-in dataset
+data(mtcars)
+
+# Define regression formula
+xgb_formula <- mpg ~ cyl + disp + hp + wt
+
+# Train XGBoost model
+xgb_model <- train_xgb(data = mtcars, formula = xgb_formula, nrounds = 50)
+
+# Print model summary
+print(xgb_model)
 }
 }
