@@ -1,5 +1,5 @@
 ---
-title: "Spatial Machine Learning workflow"
+title: "mlspatial:Spatial Machine Learning workflow"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{spatial_ml_workflow}
@@ -13,13 +13,13 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>", echo = TRUE, message = FA
 
 ```{r}
 olddir <- getwd()
-on.exit(setwd(olddir))
 setwd(tempdir())
+setwd(olddir)
 ```
 
 ```{r}
 oldopt <- options(digits = 4)
-on.exit(options(oldopt))
+options(oldopt)
 ```
 
 ```{r setup}
@@ -234,7 +234,6 @@ ggplot(model_long, aes(x = ID, y = Predicted, color = Model)) +
 
 ## plot actual vs predicted 
 oldpar <- par(mfrow = c(1, 3)) # 3 plots side-by-side
-on.exit(par(oldpar))
 
 # Random Forest
 plot(mapdata$incidence, mapdata$rf_pred,
@@ -254,8 +253,7 @@ plot(mapdata$incidence, mapdata$svr_pred,
      main = "SVR", pch = 19, col = "purple")
 abline(0, 1, col = "red", lwd = 2)
 
-oldpar <- par(mfrow = c(1, 1)) # Reset layout
-on.exit(par(oldpar))
+par(oldpar)
 
 ## Actual vs predicted plot with correlations
 
@@ -502,7 +500,6 @@ print(model_eval)
 
 #Visualize MAE and RMSE
 oldpar <- par(mfrow = c(1, 3))
-on.exit(par(oldpar))
 
 #Barplot of RMSE
 barplot(model_eval$RMSE, names.arg = model_eval$Model, 
@@ -515,8 +512,7 @@ barplot(model_eval$MAE, names.arg = model_eval$Model,
 barplot(model_eval$Rsquared, names.arg = model_eval$Model, 
         col = "grey", las = 1, main = "Model Rsquared", ylab = "MAE")
 
-oldpar <- par(mfrow = c(1, 1))
-on.exit(par(oldpar))
+par(oldpar)
 
 #Add metrics to residual maps as captions
 map_rf <- tm_shape(mapdata) +
