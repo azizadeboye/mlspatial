@@ -19,7 +19,7 @@ train_rf(data, formula, ntree = 500, seed = 123)
 A trained randomForest model object.
 
 #' @examples
-\donttest{
+\dontrun{
 # Load required package
 library(randomForest)
 

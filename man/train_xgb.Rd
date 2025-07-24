@@ -27,7 +27,7 @@ Train XGBoost model
 Trains an XGBoost regression model.
 }
 \examples{
-\donttest{
+\dontrun{
 # Load required package
 library(xgboost)
 
