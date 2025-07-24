@@ -14,8 +14,13 @@
 #'
 #' @examples
 #' \donttest{
-#' # This example requires 'mapdata', which is not included in the package
-#' p1 <- plot_single_map(mapdata, "incidence", "Incidence")
+#' library(sf)
+#' # Create example sf object
+#' nc <- st_read(system.file("shape/nc.shp", package = "sf"), quiet = TRUE)
+#' nc$incidence <- runif(nrow(nc), 0, 100)
+#'
+#' # Plot
+#' p1 <- plot_single_map(nc, "incidence", "Incidence")
 #' }
 plot_single_map <- function(sf_data, var, title, palette = "reds") {
   tm_shape(sf_data) +
@@ -51,7 +56,7 @@ plot_single_map <- function(sf_data, var, title, palette = "reds") {
 #' nc$incidence <- runif(nrow(nc), 0, 100)
 #'
 #' # Plot
-#' p1 <- plot_single_map(nc, "incidence", "Incidence")
+#' p1 <- plot_map_grid(nc, "incidence", "Incidence")
 #' }
 
 plot_map_grid <- function(maps, ncol = 2) {

@@ -25,6 +25,6 @@ nc <- st_read(system.file("shape/nc.shp", package = "sf"), quiet = TRUE)
 nc$incidence <- runif(nrow(nc), 0, 100)
 
 # Plot
-p1 <- plot_single_map(nc, "incidence", "Incidence")
+p1 <- plot_map_grid(nc, "incidence", "Incidence")
 }
 }
