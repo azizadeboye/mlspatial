@@ -21,7 +21,7 @@ Train Support
 Trains an SVR model using the radial kernel.
 }
 \examples{
-\dontrun{
+\donttest{
 # Load required package
 library(e1071)
 
