@@ -1,5 +1,5 @@
 Package: mlspatial
-Title: 'mlspatial': Machine Learning and Mapping for Spatial Epidemiology
+Title: Machine Learning and Mapping for Spatial Epidemiology
 Version: 0.1.0
 Authors@R: 
     c(

@@ -40,7 +40,7 @@ train_rf <- function(data, formula, ntree = 500, seed = 123) {
 #' @return A trained xgboost model object.
 #' @importFrom xgboost xgb.DMatrix xgboost
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Load required package
 #' library(xgboost)
 #'
@@ -85,7 +85,7 @@ train_xgb <- function(data, formula, nrounds = 100, max_depth = 4, eta = 0.1) {
 #'
 #' @importFrom e1071 svm
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Load required package
 #' library(e1071)
 #'
