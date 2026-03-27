@@ -28,6 +28,18 @@ oldopt <- options(digits = 4)
 options(oldopt)
 ```
 
+# Introduction
+
+The `mlspatial` package provides an integrated framework for spatial epidemiological analysis by combining geospatial data processing, machine learning, and spatial statistical methods within a unified workflow. It is designed to support the analysis and prediction of disease patterns across geographic regions using both traditional spatial techniques and modern predictive modelling approaches.
+
+The package enables users to build end-to-end spatial modelling pipelines, including data preprocessing, thematic mapping, and the application of machine learning algorithms such as Random Forest, XGBoost, and Support Vector Regression. In addition, it incorporates spatial autocorrelation diagnostics, including Moran’s I and Local Indicators of Spatial Association (LISA), to assess geographic clustering and dependencies in health outcomes.
+
+This vignette demonstrates the core functionality of `mlspatial` using a synthetic spatial epidemiology dataset, illustrating how machine learning models can be applied to predict disease risk and how spatial patterns can be visualised and interpreted.
+
+# Environment Setup
+
+We begin by loading the required libraries and accessing example spatial data bundled with the package. A temporary working directory is also defined to store model outputs, visualisations, and intermediate results generated during the analysis workflow.
+
 ```{r setup}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 library(mlspatial)
@@ -42,6 +54,22 @@ library(e1071)
 library(caret)
 library(tidyr)
 ```
+
+# Data Loading and Spatial Integration
+
+Spatial epidemiological analyses require the integration of geographic boundaries with disease and demographic data. The mlspatial package provides a streamlined workflow for loading, visualising, and merging spatial datasets:
+
+## Loading Spatial Data:
+
+Spatial objects (e.g., shapefiles) can be imported and quickly visualised using built-in plotting functions or compatible mapping libraries.
+
+## Exploratory Mapping:
+
+Users can generate thematic maps with country or region labels to inspect geographic structure and verify data integrity.
+
+## Data Integration:
+
+Epidemiological datasets (e.g., incidence, prevalence, mortality) are merged with spatial objects using join_data() or standard dplyr joins, enabling downstream modelling and mapping.
 
 ```{r}
 # Quick thematic map with country labels
@@ -70,6 +98,28 @@ mapdata <- inner_join(africa_shp, panc_incidence, by = "NAME")
 ## OR mapdata <- left_join(nat, codata, by = "DISTRICT_N")
 str(mapdata)
 ```
+
+# Thematic Mapping of Disease Incidence
+
+Visualising disease incidence across geographic regions is a key step in spatial epidemiology. The `mlspatial` package supports the creation of high-quality thematic maps that highlight spatial variation across demographic groups.
+
+In this example, we generate a series of quantile-based choropleth maps to visualise pancreatic cancer incidence across countries, stratified by sex and age groups.
+
+# Quantile Mapping:
+
+Values are classified into quantiles to ensure balanced visual representation across regions.
+
+# Multiple Indicators:
+
+Maps are generated for overall incidence, sex-specific incidence, and age-stratified subgroups.
+
+#Layout Arrangement:
+
+Individual maps are combined into a grid layout for comparative visual analysis.
+
+## Interpretation
+
+These maps provide a comparative view of pancreatic cancer incidence across countries and demographic subgroups. Quantile classification ensures that spatial differences are visually balanced, making it easier to identify high-risk and low-risk regions. Stratified maps further reveal how disease burden varies by age and sex, supporting more targeted epidemiological insights and public health interventions.
 
 ```{r}
 #Visualize Pancreatic cancer Incidence by countries
@@ -129,6 +179,22 @@ tmap_arrange(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12,
              widths = c(.75, .75))
 tmap_mode(current.mode)
 ```
+
+# Machine Learning Modelling
+
+The mlspatial package integrates multiple machine learning algorithms to model spatial variation in epidemiological outcomes. Users can train predictive models using structured demographic, temporal, and geographic features.
+
+## Model Training:
+
+Functions such as train_rf(), train_xgb(), and train_svr() allow users to fit Random Forest, XGBoost, and Support Vector Regression models, respectively.
+
+## Prediction:
+
+Trained models can be used to generate predicted disease outcomes across geographic regions.
+
+## Model Comparison:
+
+Multiple models can be evaluated to identify the best-performing approach for a given dataset.
 
 ```{r}
 ## Machine Learning Model building
@@ -192,6 +258,18 @@ summary(svr_model)
 #mapdata$pred_svr <- predict(svr_model)
 ```
 
+## Model Evaluation
+
+To assess predictive performance, mlspatial provides functions to compute standard regression metrics and compare models.
+
+# Performance Metrics:
+
+Evaluate models using RMSE, MAE, and R².
+
+# Cross-Validation:
+
+Built-in support for k-fold cross-validation improves robustness and prevents overfitting.
+
 ```{r}
 # Model Evaluation (predictions):
 # evaluate each model step-by-step:
@@ -225,6 +303,32 @@ print(model_eval)
 #Sort and interpret:
 model_eval[order(model_eval$RMSE), ]  # Best = Top row
 ```
+
+# Model Prediction Visualisation
+
+Visualising model predictions is essential for understanding model behaviour, comparing performance across algorithms, and assessing predictive accuracy. The `mlspatial` package supports multiple approaches for exploring predicted outputs.
+
+# Prediction Trends Across Observations
+
+To compare how different models behave across observations, predictions from multiple models can be combined and visualised as line plots.
+
+## Reshaping Predictions:
+Predictions from each model are combined into a long format for flexible plotting.
+
+## Trend Visualisation:
+Line plots allow comparison of prediction patterns across models.
+
+## Observed vs Predicted Comparison
+
+Comparing observed and predicted values provides a direct assessment of model accuracy. Ideally, predictions should align closely with the 45-degree reference line.
+
+## Observed vs Predicted with Correlation
+
+To enhance interpretability, scatter plots can be combined with correlation statistics (e.g., Pearson R²), providing a quantitative measure of model performance.
+
+## Interpretation
+
+These visualisations provide complementary insights into model performance. Line plots reveal differences in prediction behaviour across observations, while observed vs predicted plots assess accuracy and bias. The inclusion of correlation statistics further quantifies model performance, helping identify the most reliable algorithm for spatial epidemiological prediction.
 
 ```{r}
 #### Models Predicted plots
@@ -303,6 +407,33 @@ p3 <- ggplot(mapdata, aes(x = incidence, y = svr_pred)) +
 combined_plot <- ggarrange(p1, p2, p3, ncol = 3, nrow = 1, common.legend = FALSE)
 ```
 
+## Cross-Validation of Predictive Models
+
+Cross-validation is a critical step for evaluating model performance and ensuring robust, generalizable predictions. The `mlspatial` workflow supports multiple algorithms, including Random Forest (RF), XGBoost (XGB), and Support Vector Regression (SVR).
+
+# Step 1: Setup
+
+We first define a reproducible environment and cross-validation strategy.
+
+# Step 2: Random Forest Cross-Validation
+
+Random Forest models benefit from tuning key parameters while evaluating predictive performance using cross-validation.
+
+# Step 3: XGBoost Cross-Validation
+
+For XGBoost, we convert data to numeric and use xgb.cv to find the optimal number of boosting rounds while monitoring RMSE.
+
+# Step 4: Support Vector Regression (SVR) Cross-Validation
+
+SVR often benefits from feature scaling. We apply center/scale preprocessing during cross-validation.
+
+# Interpretation
+
+- Random Forest provides variable importance metrics and robust performance across folds.
+- XGBoost uses gradient boosting to optimize predictive accuracy and can be fine-tuned via early stopping.
+- SVR is sensitive to feature scaling but can capture non-linear relationships effectively.
+
+These cross-validation procedures quantify expected out-of-sample performance, allowing comparison between models and selection of the best-performing algorithm for spatial epidemiology predictions.
 
 ```{r}
 ## CROSS-VALIDATION
@@ -371,6 +502,24 @@ svr_cv <- train(
 print(svr_cv)
 ```
 
+## Spatial Maps of Model Predictions
+
+The `mlspatial` package allows visualization of predicted incidence values across geographic regions. Here, we map predictions from Random Forest (RF), XGBoost (XGB), and Support Vector Regression (SVR) models using African country shapefiles and incidence data.
+
+# Step 1: Join Shapefiles and Incidence Data
+
+# Step 2: Add Predicted Values
+
+Predictions are added to the mapdata object for each model.
+
+# Step 3: Visualize Individual Model Maps
+Random Forest, XGBoost, and SVR
+
+# Step 4: Compare Models Side by Side
+
+To visually compare predicted spatial patterns across models:
+
+This approach allows users to compare spatial prediction patterns across models directly, facilitating interpretation and selection of the most appropriate predictive approach for regional incidence mapping.
 
 ```{r}
 ## Spatial maps of predicted values of each model
@@ -423,6 +572,26 @@ tmap_arrange(
   nrow = 1)
 ```
 
+## Residual Analysis
+
+After predicting pancreatic cancer incidence with Random Forest (RF), XGBoost (XGB), and Support Vector Regression (SVR) models, it is important to examine residuals to assess model fit and identify systematic biases.
+
+# Step 1: Compute Residuals
+
+Residuals are calculated as the difference between observed (mapdata$incidence) and predicted values for each model.
+
+# Step 2: Compare Residual Distributions
+
+A boxplot allows comparison of prediction errors across models.
+
+# Step 3: Map Residuals Spatially
+
+Adding residuals to mapdata enables visualization of geographic patterns in model errors.
+
+This approach allows users to:
+- Quantify model errors across the dataset (via boxplots).
+- Identify spatial patterns in residuals, which can reveal geographic regions where models over- or under-predict incidence.
+
 ```{r}
 # Predicted Residuals
 # we've already trained all 3 models and have `mapdata$incidence` as your actual values.
@@ -461,6 +630,20 @@ boxplot(residuals_df$rf_resid, residuals_df$xgb_resid, residuals_df$svr_resid,
         ylab = "Prediction Error (Residual)")
 ```
 
+## Spatial Visualization of Model Residuals
+
+After computing prediction residuals for Random Forest (RF), XGBoost (XGB), and Support Vector Regression (SVR), we can visualize spatial patterns in model errors. This helps identify regions where models over- or under-predict pancreatic cancer incidence.
+
+# Step 1: Add residuals to the spatial data
+
+# Step 2: Set static plotting mode
+
+# Step 3: Create individual residual maps
+
+# Step 4: Combine residual maps in a grid
+
+This layout provides a side-by-side comparison of residuals from the three models, highlighting geographic regions where each model may over- or under-predict incidence. It complements boxplots and scatterplots for a comprehensive residual analysis.
+
 ```{r}
 ## Spatial maps of residual values from each model
 #Add residuals to mapdata
@@ -495,6 +678,19 @@ map_svr <- tm_shape(mapdata) +
 tmap_arrange(map_rf, map_xgb, map_svr, nrow = 1)
 ```
 
+## Barplot and Spatial maps for RMSE and MAE
+
+After training all three models, we evaluate their performance using Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), and R². We also integrate these metrics into residual maps for spatial interpretation.
+
+# Step 1: Compute evaluation metrics
+
+# Step 2: Barplots of RMSE, MAE, and R²
+
+# Step 3: Annotate residual maps with performance metrics
+
+This section provides:
+- Barplots for overall RMSE, MAE, and R² across models.
+- Spatial maps showing residuals, annotated with performance metrics, to visually identify regions with higher prediction errors.
 
 ```{r}
 ##Barplot and Spatial maps for RMSE and MAE
@@ -555,6 +751,18 @@ map_svr <- tm_shape(mapdata) +
 
 tmap_arrange(map_rf, map_xgb, map_svr, nrow = 1)
 ```
+
+## Spatial Autocorrelation Analysis
+
+Understanding spatial dependence is essential in epidemiology. The `mlspatial` package incorporates spatial statistical tools to quantify clustering and detect geographic patterns.
+
+# Global Spatial Autocorrelation:
+
+Moran’s I is used to assess overall spatial dependence.
+
+#Local Spatial Clustering:
+
+LISA identifies local clusters (e.g., high-high, low-low regions).
 
 ```{r}
 #Global Moran’s I, Local Moran’s I (LISA), Cluster categories (e.g., High-High, Low-Low), Maps: Moran’s I map,
